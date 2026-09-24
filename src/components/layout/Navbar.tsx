@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+
 import { Container } from "@/components/ui/Container";
+import { MobileMenu } from "@/components/layout/MobileMenu";
 
 const navigation = [
   { label: "Services", href: "/services" },
@@ -19,7 +21,7 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="group relative flex items-center"
+            className="group relative flex shrink-0 items-center"
             aria-label="I2Prod home"
           >
             <Image
@@ -34,7 +36,7 @@ export function Navbar() {
 
           {/* Desktop navigation */}
           <nav
-            className="hidden items-center gap-8 lg:flex"
+            className="hidden items-center gap-7 lg:flex xl:gap-8"
             aria-label="Main navigation"
           >
             {navigation.map((item) => (
@@ -45,52 +47,45 @@ export function Navbar() {
               >
                 {item.label}
 
-                {/* Animated underline */}
                 <span className="absolute bottom-0 left-0 h-px w-0 bg-gradient-to-r from-[#0866ff] to-[#00c6ff] transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </nav>
 
-          {/* Primary CTA */}
-          <Link
-            href="/contact"
-            className="
-              group
-              flex
-              items-center
-              gap-2
-              rounded-full
-              border
-              border-[#1688ff]/30
-              bg-gradient-to-r
-              from-[#0866ff]
-              to-[#008cff]
-              px-5
-              py-2.5
-              text-sm
-              font-medium
-              text-white
-              shadow-[0_0_30px_rgba(8,102,255,0.18)]
-              transition-all
-              duration-300
-              hover:scale-[1.03]
-              hover:border-[#00c6ff]/50
-              hover:shadow-[0_0_40px_rgba(8,102,255,0.35)]
-            "
-          >
-            <span className="hidden sm:inline">Start a Project</span>
-            <span className="sm:hidden">Start</span>
+          {/* Actions */}
+          <div className="flex items-center gap-3">
+            {/* Desktop / tablet CTA */}
+            <Link
+              href="/contact"
+              className="
+                group hidden items-center gap-2 rounded-full
+                border border-[#1688ff]/30
+                bg-gradient-to-r from-[#0866ff] to-[#008cff]
+                px-5 py-2.5 text-sm font-medium text-white
+                shadow-[0_0_30px_rgba(8,102,255,0.18)]
+                transition-all duration-300
+                hover:scale-[1.03]
+                hover:border-[#00c6ff]/50
+                hover:shadow-[0_0_40px_rgba(8,102,255,0.35)]
+                sm:flex
+              "
+            >
+              <span>Start a Project</span>
 
-            <ArrowUpRight
-              size={15}
-              strokeWidth={1.8}
-              className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-            />
-          </Link>
+              <ArrowUpRight
+                size={15}
+                strokeWidth={1.8}
+                className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </Link>
+
+            {/* Mobile / tablet menu */}
+            <MobileMenu />
+          </div>
         </div>
       </Container>
 
-      {/* Subtle blue glow underneath navbar */}
+      {/* Subtle bottom glow */}
       <div className="pointer-events-none absolute bottom-[-1px] left-1/2 h-px w-1/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-[#0866ff]/40 to-transparent" />
     </header>
   );
